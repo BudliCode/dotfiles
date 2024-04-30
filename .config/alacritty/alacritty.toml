@@ -1,0 +1,31 @@
+live_config_reload = true
+
+import = [
+    "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[shell]
+program = "/bin/tmux"
+args = ["new"]
+
+[font]
+size = 13.0
+offset = { x = 0, y = 0 }
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+[window]
+decorations = "None"
+dynamic_padding = false
+padding = { x = 3, y = 3 }
+opacity = 1
+
+
+[debug]
+render_timer = false
+highlight_damage = false

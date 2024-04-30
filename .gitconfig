@@ -1,0 +1,5 @@
+[init]
+	defaultBranch = master
+[user]
+	email = birger@luland.de
+	name = Birger
