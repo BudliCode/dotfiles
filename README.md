@@ -2,34 +2,37 @@
 
 ## Set keyboard layout
 
+Load german keyboard layout. Use "?" on a german keyboard to type "-"
 ```sh
-$ loadkeys de-latin1
+loadkeys de-latin1
 ```
 
+##  connect to wifi
 
-connect to wifi
+enter iwctl
 ```
-    $ iwctl
-```
-
-```
-    $ device list
+iwctl
 ```
 
+check for the name of wireless devies
 ```
-    $ adapter [adapter] set-property Powered on
+device list
 ```
 
 ```
-    $ station [name] scan
+adapter [adapter] set-property Powered on
 ```
 
 ```
-    $ station [name] get-networks
+station [name] scan
 ```
 
 ```
-    $ station [name] connect [SSID]
+station [name] get-networks
+```
+
+```
+station [name] connect [SSID]
 ```
 
 ```
@@ -253,38 +256,72 @@ system configuration
         LC_TIME=de_DE.UTF-8
 ```
 
+```
     $echo "name" > /etc/hostname
+```
 
+```
     enable multilib, color and parallelDownload in /etc/pacman.conf
+```
+```
     $pacman -Sy
+```
 
+```
     install zsh
+```
 
+```
     $passwd //sets root password
+```
+```
     $useradd -m -g users -G wheel,storage,power -s /bin/zsh birger
+```
+```
     $passwd birger
+```
+```
     $ export EDITOR=nvim
+```
+```
     $visudo 
+```
+```
         uncomment first %wheel
+```
 
+```
     install:
-    #    iwd
         networkmanager
+```
+```
     $systemctl enable NetworkManager.service
-    #$systemctl enable NetworkManager-dispatcher.service
-    #$systemctl enable systemd-resolved.service
-    #ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+```
 
+```
     install intel/amd-ucode
+```
 
+```
     $grub-mkconfig -o /boot/grub/grub.cfg
+```
+```
     $grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
+```
 
+```
     $exit
+```
+```
     $unmount -R /mnt
+```
+```
     $reboot
+```
     
+```
     nmcli device wifi connect Zwerg password [password]
+```
 
     install: xdg-user-dirs
         $xdg-user-dirs-update
