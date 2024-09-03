@@ -1,116 +1,257 @@
-keyboard layout
-    $ loadkeys de-latin1
+# My Arch Linux Setup Guide
+
+## Set keyboard layout
+
+```sh
+$ loadkeys de-latin1
+```
+
 
 connect to wifi
+```
     $ iwctl
+```
+
+```
     $ device list
+```
+
+```
     $ adapter [adapter] set-property Powered on
+```
+
+```
     $ station [name] scan
+```
+
+```
     $ station [name] get-networks
+```
+
+```
     $ station [name] connect [SSID]
+```
 
+```
 $ timedatectl
+```
 
+```
 systemctl enable sshd
+```
+
+```
 passwd
+```
+
+```
 ip addr to see addr for ssh
+```
 
 
 
-partition creation: swap 16, boot 2, home rest, root 32
-    $ lsblk //zur übersicht
-    $ gdisk /dev/drive //x + z zum löschen aller partitionen
-    n //für neue partition
-        p1: EFI EF00 512M
-        p2: boot EF02 4G
-        p3: Luks 8309
-    $ Modprobe dm-crypt
-    $ modprobe dm-mod
-    $ cryptsetup luksFormat -v -s 512 -h sha512 /dev/nvme0n1p3 //passwort aufschreiben!!!
-    $ cryptsetup open /dev/nvme0n1p3 luks_lvm
-    $ vgcreate arch /dev/mapper/luks_lvm
-    $ lvcreate -n swap -L 18G arch //RAM size + 2G
-    $ lvcreate -n root -L 128G arch
-    $ lvcreate -n home -l +100%FREE arch
-    $ mkfs.fat -F32 /dev/nvme0n1p1
-    $ mkfs.ext4 /dev/nvme0n1p2
-    $ mkfs.btrfs -L root /dev/mapper/arch-root
-    $ mkfs.btrfs -L root /dev/mapper/arch-home
-    $ mkswap /dev/mapper/arch-swap
-    $ swapon /dev/mapper/arch-swap
-    $ swapon -a
-    $ mount /dev/mapper/arch-root /mnt
-    $ mkdir -p /mnt/{home,boot}
-    $ mount /dev/nvme0n1p2 /mnt/boot
-    $ mount /dev/mapper/arch-home /mnt/home
-    $ mkdir /mnt/boot/efi
-    $ mount /dev/nvme0n1p1 /mnt/boot/efi
+```
+ lsblk //zur übersicht
+```
+```
+ gdisk /dev/drive //x + z zum löschen aller partitionen
+n //für neue partition
+   p1: EFI EF00 512M
+   p2: boot EF02 4G
+   p3: Luks 8309
+```
+```
+ modprobe dm-crypt
+```
+```
+ modprobe dm-mod
+```
+```
+ cryptsetup luksFormat -v -s 512 -h sha512 /dev/nvme0n1p3 //passwort aufschreiben!!!
+```
+```
+ cryptsetup open /dev/nvme0n1p3 luks_lvm
+```
+```
+ vgcreate arch /dev/mapper/luks_lvm
+```
+```
+ lvcreate -n swap -L 18G arch //RAM size + 2G
+```
+```
+ lvcreate -n root -L 128G arch
+```
+```
+ lvcreate -n home -l +100%FREE arch
+```
+```
+ mkfs.fat -F32 /dev/nvme0n1p1
+```
+```
+ mkfs.ext4 /dev/nvme0n1p2
+```
+```
+ mkfs.btrfs -L root /dev/mapper/arch-root
+```
+```
+ mkfs.btrfs -L root /dev/mapper/arch-home
+```
+```
+ mkswap /dev/mapper/arch-swap
+```
+```
+ swapon /dev/mapper/arch-swap
+```
+```
+ swapon -a
+```
+```
+ mount /dev/mapper/arch-root /mnt
+```
+```
+ mkdir -p /mnt/{home,boot}
+```
+```
+ mount /dev/nvme0n1p2 /mnt/boot
+```
+```
+ mount /dev/mapper/arch-home /mnt/home
+```
+```
+ mkdir /mnt/boot/efi
+```
+```
+ mount /dev/nvme0n1p1 /mnt/boot/efi
+```
 
 installation
+```
     $pacstrap -K /mnt base base-devel Linux Linux-Firmware
+```
 
 
+```
     $genfstab -U -p /mnt > /mnt/etc/fstab
+```
+```
     $arch-chroot /mnt /bin/bash
+```
 
+```
     install:
         bash-completion
         nano
         neovim
+```
 
+```
     nvim /etc/mkinitcpio.conf // add encrypt and lvm2 between block and filesystem to HOOKS
+```
     HOOKS=(... block encrypt lvm2 filesystem ...)
+```
+```
 
     Packman -S lvm2
+```
 
+```
     install:
         grub
         efibootmgr
+```
+```
     $grub-install --efi-directory=/boot/efi
+```
 
 
+```
     get uuid: blkid /dev/nvme0n1p3
+```
+```
     nvim /etc/default/grub
+```
+```
     add to variables: root=/dev/mapper/arch-root cryptdevice=UUID=<uuid>:luks_lvm 
+```
 
 Keyfile
+```
     mkdir /secure
+```
+```
     dd if=/dev/random of=/secure/root_keyfile.bin bs=512 count=8
+```
+```
     chmod 000 /secure/root_keyfile.bin
+```
+```
     chmod 600 /boot/initramfs-linnux*
+```
+```
     cryptsetup luksAddKey /dev/nvme0n1p3 /secure/root_keyfile.bin
+```
 
+```
     nvim /etc/mkinitcpio.conf
+```
+```
     FILES=(/secure/root_keyfile.bin)
+```
+```
     mkinitcpio -p linux
+```
 
+```
     $grub-mkconfig -o /boot/grub/grub.cfg
+```
+```
     $grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
+```
 
 
 
 
 system configuration
 
+```
     $echo "KEYMAP=de-latin1" > /etc/vconsole.conf
+```
 
+```
     $ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+```
+```
     $hwclock --systohc
+```
 
+```
     nvim /etc/systemd/timesyncd.conf
+```
         add NTP servers:
+```
             [Time]
             NTP=0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org 
             FallbackNTP=0.pool.ntp.org 1.pool.ntp.org
+```
+```
     systemctl enable systemd-timesyncd.service
+```
 
+```
     uncomment locales in /etc/locale (de_DE.UTF-8 and en_US.UTF-8)
+```
+```
     $locale-gen
+```
+```
     nvim /etc/locale.conf
+```
+```
         LANG=en_US.UTF-8
         LANGUAGE=en_US:en:C:de_DE:de
         LC_COLLATE=C
         LC_TIME=de_DE.UTF-8
+```
 
     $echo "name" > /etc/hostname
 
