@@ -1,0 +1,15 @@
+WM Hyprland install:
+    hyprland
+    wofi
+    dunst
+    pipewire
+    wireplumber
+    xdg-desktop-portal-hyprland
+    polkit-kde-agent
+    qt5-wayland
+    qt6-wayland
+    hyprlidle
+    hyprlock
+    hyprpaper
+    brightnessctl
+    waybar

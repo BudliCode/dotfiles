@@ -1,0 +1,143 @@
+keyboard layout
+    $loadkeys de-latin1
+
+connect to wifi
+    $iwctl
+    $device list
+    $adapter [adapter] set-property Powered on
+    $station [name] scan
+    $station [name] get-networks
+    $station [name] connect [SSID]
+
+update clock
+    $timedatectl
+
+partition creation: swap 16, boot 2, home rest, root 32
+    $lsblk //zur übersicht
+    $gdisk /dev/drive
+        p1: boot EF00 2G 
+        p2: swap 8200 16G
+        p3: root 8300 32G
+        p4: home 8300 rest
+    $mkfs.fat -F 32 /dev/efi_system_partition
+    $mkswap /dev/swap_partition
+    $swapon /dev/swap_partition
+    $mkfs.ext4 /dev/root_partition
+    $mkfs.ext4 /dev/home_partition
+    $mount /dev/root_partition /mnt
+    $mount --mkdir /dev/boot_partition /mnt/boot
+    $mount --mkdir /dev/home_partition /mnt/home
+
+rankmirrors
+    $cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+    $sudo pacman -Sy pacman-contrib
+    $rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+
+installation
+    $pacstrap -K /mnt base base-devel Linux Linux-Firmware
+
+system configuration
+    $genfstab -U -p /mnt/etc/fstab
+    $Arch-chroot /mnt
+
+    install:
+        bash-completion
+        nano
+        neovim
+
+    $echo "KEYMAP=de-latin1" > /etc/vconsole.conf
+
+    uncomment locales in /etc/locale
+    $locale-gen
+    $echo "LANG=en_US.UTF-8" > /etc/locales.conf
+    $ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+    $hwclock --systohc
+    $echo "name" > /etc/hostname
+
+    $systemctl enable fstrim.timer
+    enable multilib, color and parallelDownload in /etc/pacman.conf
+    $pacman -Sy
+    $passwd //sets root password
+    $useradd -m -g users -G wheel,storage,power -S /bin/bash birger
+    $passwd birger
+    $EDITOR=nano visudo uncomment first %wheel and add "Defaults rootpw"
+
+    $mkinitcpio -P
+
+    install:
+        grub
+        efibootmgr
+    $grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB
+    $grub-mkconfig -o /boot/grub/grub.cfg
+
+    install:
+        intel/amd-ucode
+        iwd
+        networkmanager
+    $systemctl enable NetworkManager.service
+    $systemctl enable NetworkManager-dispatcher.service
+    $systemctl enable systemd-resolved.service
+    ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
+    $exit
+    $unmount -R /mnt
+    $reboot
+    
+    nmcli device wifi connect Zwerg password [password]
+
+    install:
+        openssh
+    $mkdir ~/.ssh
+    echo "AddKeysToAgent yes" > ~/.ssh/config
+    $systemctl --user enable --now ssh-agent.service
+    $ssh-keygen -C "comment"
+
+Power management:
+    install:
+        tlp
+    #systemctl enable --now tlp
+    #systemctl mask --now systemd-rfkill.service
+    #systemctl mask --now systemd-rfkill.socket
+
+         
+
+
+
+TODOs:
+
+complete ssh-agent setup after shell
+hyprpaper (wallpaper)
+hypridle (idle manager)
+workspace manager? hyprsome
+HyprLS editor support für hyprland config
+hyprlock
+hyprcurser + einrichten
+wofi
+Clipboard manager
+screensharing? https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580
+xwaylandvideobridge
+Discord (Webcord?)
+WebApps (Teams...)
+greetd/
+terminal emulator: kitty
+shell: zsh + tmux
+cmd prompt: starship
+file explorer: thunar (später ranger?)
+dotfiles kopieren
+sound alsa pipewire
+vivaldi einrichten
+power management
+dotfiles manager suchen
+grub theme
+sddm einrichten
+theme einrichten
+waybar einrichten
+OSD
+network manager applet
+usb mounting udiskie?
+tab-replacement?
+hyprland plugins?
+firewall?
+screenshots?
+nvim zufriedenstellend einrichten/lernen
+VMsu
