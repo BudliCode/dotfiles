@@ -1,9 +1,0 @@
-intel GPU install:
-    mesa
-    lib32-mesa
-    vukan-intel
-    lib32-vulkan-intel
-    intel-gpu-tools
-    libva-utils
-    intel-media-driver
-    intel-unndervolt
