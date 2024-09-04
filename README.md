@@ -533,106 +533,69 @@ sudo systemctl mask --now systemd-rfkill.socket
 ```
 
 # Packages to install:
-intel GPU:
-    mesa
-    lib32-mesa
-    vulkan-intel
-    lib32-vulkan-intel
-    intel-gpu-tools
-    libva-utils
-    intel-media-driver
+intel GPU
+```sh
+yay -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-gpu-tools libva-utils intel-media-driver
+```
 
-pipewire-audio:
-    pipewire
-    lib32-pipewire
-    pipewire-docs
-    wireplumber
-    pwvucontrol
-    pipewire-audio
-    pipewire-alsa
-    pipewire-pulse
-    pipewire-jack
-    lib32-pipewire-jack
+pipewire-audio
+```sh
+yay -S pipewire lib32-pipewire pipewire-docs wireplumber pwvucontrol pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack
+```
 
 fonts install:
-    ttf-liberation
-    ttf-ubuntu-font-family
-    ttf-anonymous-pro
-    ttf-dejavu
-    ttf-bitstream-vera
-    adobe-source-sans-pro-fonts
-    noto-fonts
-    noto-fonts-cjk
-    ttf-hack-nerd
+```sh
+yay -S ttf-liberation ttf-ubuntu-font-family ttf-anonymous-pro ttf-dejavu ttf-bitstream-vera adobe-source-sans-pro-fonts noto-fonts noto-fonts-cjk ttf-hack-nerd
+```
 
 basic apps:
-    man-db
-    man-pages
-    tldr
-    vivaldi
-    alacritty
-    dolphin
-    wget
-    zip
-    unzip
-    ripgrep
-    keepassxc
-    libreoffice-still
-    tar
+```sh
+yay -S man-db man-pages tldr vivaldi alacritty dolphin wget zip unzip ripgrep keepassxc libreoffice-still tar
+```
 
 WM Hyprland:
-    hyprland
-    wofi
-    dunst
-    pipewire
-    wireplumber
-    xdg-desktop-portal-hyprland
-    polkit-kde-agent
-    qt5-wayland
-    qt6-wayland
-    hyprlidle
-    hyprlock
-    hyprpaper
-    brightnessctl
-    waybar
+```sh
+yay -S  hyprland wofi dunst pipewire wireplumber xdg-desktop-portal-hyprland polkit-kde-agent qt5-wayland qt6-wayland hyprlidle hyprlock hyprpaper brightnessctl waybar
+```
 
 
-TODOs:
-ssh
-rate mirrors
-complete ssh-agent setup after shell
-hyprpaper (wallpaper)
-hypridle (idle manager)
-workspace manager? hyprsome
-HyprLS editor support für hyprland config
-hyprlock
-hyprcurser + einrichten
-wofi
-Clipboard manager
-screensharing? https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580
-xwaylandvideobridge
-Discord (Webcord?)
-WebApps (Teams...)
-greetd/
-terminal emulator: kitty
-shell: zsh + tmux
-cmd prompt: starship
-file explorer: thunar (später ranger?)
-dotfiles kopieren
-sound alsa pipewire
-vivaldi einrichten
-power management
-dotfiles manager suchen
-grub theme
-sddm einrichten
-theme einrichten
-waybar einrichten
-OSD
-network manager applet
-usb mounting udiskie?
-tab-replacement?
-hyprland plugins?
-firewall?
-screenshots?
-nvim zufriedenstellend einrichten/lernen
-VMsu
+# TODOs:
+
+- ssh
+- rate mirrors
+- complete ssh-agent setup after shell
+- hyprpaper (wallpaper)
+- hypridle (idle manager)
+- workspace manager? hyprsome
+- HyprLS editor support für hyprland config
+- hyprlock
+- hyprcurser + einrichten
+- wofi
+- Clipboard manager
+- screensharing? https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580
+- xwaylandvideobridge
+- Discord (Webcord?)
+- WebApps (Teams...)
+- greetd/
+- terminal emulator: kitty
+- shell: zsh + tmux
+- cmd prompt: starship
+- file explorer: thunar (später ranger?)
+- dotfiles kopieren
+- sound alsa pipewire
+- vivaldi einrichten
+- power management
+- dotfiles manager suchen
+- grub theme
+- sddm einrichten
+- theme einrichten
+- waybar einrichten
+- OSD
+- network manager applet
+- usb mounting udiskie?
+- tab-replacement?
+- hyprland plugins?
+- firewall?
+- screenshots?
+- nvim zufriedenstellend einrichten/lernen
+- VMsu
