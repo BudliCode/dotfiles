@@ -387,7 +387,7 @@ ParallelDownloads = 5
 Include = /etc/pacman.d/mirrorlist
 ```
 ```sh
-    $pacman -Sy
+$pacman -Sy
 ```
 
 ### Users
@@ -449,14 +449,15 @@ grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
 ```
 
 ## Reboot
+
 ```
-    $exit
-```
-```
-    $unmount -R /mnt
+exit
 ```
 ```
-    $reboot
+unmount -R /mnt
+```
+```
+reboot
 ```
 
 # Past Install
