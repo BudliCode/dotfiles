@@ -108,6 +108,7 @@ cryptsetup open /dev/nvme0n1p3 luks_lvm
 Create the volume and volume group
 ```sh
 pvcreate /dev/mapper/luks_lvm
+```
 ```sh
 vgcreate arch /dev/mapper/luks_lvm
 ```
@@ -346,9 +347,9 @@ systemctl enable systemd-timesyncd.service
 
 ### Locale
 
-Uncomment locales (de_DE.UTF-8 and en_US.UTF-8)
+Uncomment locales
 ```sh
-    nvim /etc/locale.gen
+nvim /etc/locale.gen
 ```
 ```
 de_DE.UTF-8 UTF-8
