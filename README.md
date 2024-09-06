@@ -504,18 +504,37 @@ makepkg -si
 yay -S openssh
 ```
 ```sh
-$mkdir ~/.ssh
+mkdir ~/.ssh
 ```
 ```sh
 echo "AddKeysToAgent yes" > ~/.ssh/config
 ```
 ```sh
-$systemctl --user enable --now ssh-agent.service
+systemctl --user enable --now ssh-agent.service
 ```
 ```sh
-$ssh-keygen -C "comment"
+ssh-keygen -C "comment"
 ```
 TODO: setup ssh to remotely ssh into the system
+
+## Dotfiles
+
+Install gnu-stow for dotfile management
+```sh
+sudo pacman -S stow
+```
+
+```sh
+git clone https://github.com/budlicode/dotfiles
+```
+```sh
+cd dotfiles
+```
+
+
+```sh
+stow . --dotfiles
+```
 
 ## Power management
 
@@ -550,7 +569,7 @@ yay -S ttf-liberation ttf-ubuntu-font-family ttf-anonymous-pro ttf-dejavu ttf-bi
 
 basic apps:
 ```sh
-yay -S man-db man-pages tldr vivaldi alacritty dolphin wget zip unzip ripgrep keepassxc libreoffice-still tar
+yay -S man-db man-pages tldr vivaldi alacritty dolphin wget zip unzip ripgrep keepassxc libreoffice-still tar tmux
 ```
 
 WM Hyprland:

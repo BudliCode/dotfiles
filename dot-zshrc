@@ -17,8 +17,6 @@ plug "$HOME/.config/zsh/functions.zsh"
 plug "$HOME/.config/zsh/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
 plug "$HOME/.config/zsh/zstyle.zsh"
 
-eval $(thefuck --alias)
-
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 

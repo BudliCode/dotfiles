@@ -1,2 +1,4 @@
-apps
 .git
+.stow-local-ignore
+/*.md
+Scripts
