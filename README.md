@@ -517,6 +517,37 @@ $ssh-keygen -C "comment"
 ```
 TODO: setup ssh to remotely ssh into the system
 
+## Backups
+
+BTRFS required
+Install timeshift grub-btrfs and timeshift-autosnap
+```sh
+yay -S timeshift grub-btrfs timeshift-autosnap
+```
+Start timeshift and use the Wizzard
+
+```sh
+change snapper to timeshift-auto
+```
+```sh
+sudo systemctl edit --full grub-btrfsd
+```
+```sh
+ExecStart=/usr/bin/grub-btrfs --syslog --timeshift-auto
+```
+```sh
+sudo systemctl enable --now grub-btrfsd
+```
+```sh
+sudo nvim /etc/timeshift-autosnap.conf
+```
+
+
+
+
+
+
+
 ## Power management
 
 ```sh
@@ -550,13 +581,14 @@ yay -S ttf-liberation ttf-ubuntu-font-family ttf-anonymous-pro ttf-dejavu ttf-bi
 
 basic apps:
 ```sh
-yay -S man-db man-pages tldr vivaldi alacritty dolphin wget zip unzip ripgrep keepassxc libreoffice-still tar
+yay -S man-db man-pages tldr vivaldi alacritty dolphin wget zip unzip ripgrep keepassxc libreoffice-still tar gparted
 ```
 
 WM Hyprland:
 ```sh
 yay -S  hyprland wofi dunst pipewire wireplumber xdg-desktop-portal-hyprland polkit-kde-agent qt5-wayland qt6-wayland hyprlidle hyprlock hyprpaper brightnessctl waybar
 ```
+zusatz: qt4ct qt5ct qt6ct nwg-look
 
 
 # TODOs:
