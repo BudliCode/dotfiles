@@ -514,6 +514,12 @@ systemctl --user enable --now ssh-agent.service
 ```sh
 ssh-keygen -C "comment"
 ```
+
+Add to .ssh/config:
+```
+Host *
+    IdentityFile ~/.ssh/sshHootsmanPrivat
+```
 TODO: setup ssh to remotely ssh into the system
 
 ## Dotfiles
