@@ -147,7 +147,7 @@ mkfs.btrfs -L root /dev/mapper/arch-root
 
 BTRFS on home
 ```sh
-mkfs.btrfs -L root /dev/mapper/arch-home
+mkfs.btrfs -L home /dev/mapper/arch-home
 ```
 
 Setup swap
