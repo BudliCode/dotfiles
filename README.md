@@ -217,7 +217,7 @@ mount /dev/nvme0n1p1 /mnt/boot/efi
 ## Install arch
 
 ```sh
-pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs bash-completion neovim lvm2
+pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs bash-completion neovim lvm2 grub efibootmgr
 ```
 
 Load the file table
@@ -243,11 +243,6 @@ HOOKS=(... block encrypt lvm2 filesystem ...)
 ```
 
 ### Bootloader
-
-Install grub and efibootmgr
-```sh
-pcaman -S grub efibootmgr
-```
 
 Setup grub on efi partition
 ```sh
