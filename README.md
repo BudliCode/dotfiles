@@ -250,7 +250,7 @@ grub-install --efi-directory=/boot/efi
 
 Obtain your lvm partition device UUID and copy them to your clipboard.
 ```sh
-get uuid: blkid /dev/nvme0n1p3
+blkid /dev/nvme0n1p3
 ```
 
 Add the following kernel parameters to grub.
