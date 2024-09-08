@@ -173,7 +173,6 @@ mount /dev/mapper/arch-root /mnt
 ```
 ```sh
 btrfs su cr /mnt/@
-btrfs su cr /mnt/@home
 btrfs su cr /mnt/@tmp
 btrfs su cr /mnt/@log
 btrfs su cr /mnt/@pkg
@@ -206,8 +205,7 @@ mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@tmp /dev/mapp
 mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@log /dev/mapper/arch-root /mnt/var/log
 mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@pkg /dev/mapper/arch-root /mnt/var/cache/pacman/pkg
 mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@snapshots /dev/mapper/arch-root /mnt/.snapshots
-mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@home /dev/mapper/arch-root /mnt/home
-mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@home /dev/mapper/arch-home /mnt/home/
+mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@home /dev/mapper/arch-home /mnt/home
 mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvolid=5 /dev/mapper/arch-root /mnt/btrfs
 mount --mkdir /dev/nvme0n1p2 /mnt/boot
 mount --mkdir /dev/nvme0n1p1 /mnt/boot/efi
