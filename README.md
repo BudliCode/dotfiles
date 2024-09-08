@@ -545,7 +545,7 @@ stow . --dotfiles
 BTRFS required
 Install timeshift grub-btrfs and timeshift-autosnap
 ```sh
-yay -S timeshift grub-btrfs timeshift-autosnap
+yay -S timeshift grub-btrfs cronie timeshift-autosnap
 ```
 Start timeshift and use the Wizzard
 
