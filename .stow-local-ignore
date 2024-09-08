@@ -1,4 +1,4 @@
 .git
 .stow-local-ignore
-/*.md
+README.md
 Scripts

@@ -15,3 +15,7 @@ zstyle 'fzf-tab:complete:*' fzf-preview 'bat -n --color=always --line-range :500
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 #zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --tree --color=always $realpath'
