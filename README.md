@@ -222,12 +222,12 @@ pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs bash-completio
 
 Load the file table
 ```sh
-$genfstab -U -p /mnt > /mnt/etc/fstab
+genfstab -U -p /mnt > /mnt/etc/fstab
 ```
 
 chroot into installation
 ```sh
-$arch-chroot /mnt /bin/bash
+arch-chroot /mnt /bin/bash
 ```
 
 ## Configuration
