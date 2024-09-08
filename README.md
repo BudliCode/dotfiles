@@ -201,17 +201,15 @@ mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@ /dev/mapper/arch-roo
 
 Create home and boot directory in root
 ```sh
-mkdir -p /mnt/{home,btrfs,tmp,.snapshots,boot/efi,var/log,var/cache/pacman/pkg}
-```
-```sh
-mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@tmp /dev/mapper/arch-root /mnt/tmp
-mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@log /dev/mapper/arch-root /mnt/var/log
-mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@pkg /dev/mapper/arch-root /mnt/var/cache/pacman/pkg
-mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@snapshots /dev/mapper/arch-root /mnt/.snapshots
-mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@home /dev/mapper/arch-root /mnt/home
-mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@home /dev/mapper/arch-home /mnt/home/
-mount -o relatime,space_cache=v2,ssd,compress=zstd,subvolid=5 /dev/mapper/arch-root /mnt/btrfs
-mount /dev/nvme0n1p1 /mnt/boot/efi
+mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@tmp /dev/mapper/arch-root /mnt/tmp
+mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@log /dev/mapper/arch-root /mnt/var/log
+mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@pkg /dev/mapper/arch-root /mnt/var/cache/pacman/pkg
+mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@snapshots /dev/mapper/arch-root /mnt/.snapshots
+mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@home /dev/mapper/arch-root /mnt/home
+mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@home /dev/mapper/arch-home /mnt/home/
+mount --mkdir -o relatime,space_cache=v2,ssd,compress=zstd,subvolid=5 /dev/mapper/arch-root /mnt/btrfs
+mount --mkdir /dev/nvme0n1p2 /mnt/boot
+mount --mkdir /dev/nvme0n1p1 /mnt/boot/efi
 ```
 
 ## Install arch
