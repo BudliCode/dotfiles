@@ -173,6 +173,7 @@ mount /dev/mapper/arch-root /mnt
 ```
 ```sh
 btrfs su cr /mnt/@
+btrfs su cr /mnt/@home
 btrfs su cr /mnt/@tmp
 btrfs su cr /mnt/@log
 btrfs su cr /mnt/@pkg
