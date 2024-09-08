@@ -424,7 +424,7 @@ EDITOR=nvim visudo
 ### Network Connectivity
 
 ```sh
-pacmann -S networkmanager
+pacman -S networkmanager
 ```
 ```sh
 systemctl enable NetworkManager.service
