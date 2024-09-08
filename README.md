@@ -2,7 +2,7 @@
 
 ## Set keyboard layout
 
-Load german keyboard layout. Use "?" on a german keyboard to type "-"
+Load german keyboard layout. Use "ß" on a german keyboard to type "-"
 ```sh
 loadkeys de-latin1
 ```
