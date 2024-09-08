@@ -217,7 +217,7 @@ mount /dev/nvme0n1p1 /mnt/boot/efi
 ## Install arch
 
 ```sh
-pacstrap -K /mnt base base-devel Linux Linux-Firmware btrfs-progs bash-completion neovim lvm2
+pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs bash-completion neovim lvm2
 ```
 
 Load the file table
