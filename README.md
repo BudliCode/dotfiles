@@ -157,6 +157,8 @@ mkswap /dev/mapper/arch-swap
 
 ## Mounting
 
+### Swap
+
 Mount swap
 ```sh
 swapon /dev/mapper/arch-swap
@@ -165,40 +167,57 @@ swapon /dev/mapper/arch-swap
 swapon -a
 ```
 
-Mount root
+### Create subvolumes
 ```sh
 mount /dev/mapper/arch-root /mnt
+```
+```sh
+btrfs su cr /mnt/@
+btrfs su cr /mnt/@tmp
+btrfs su cr /mnt/@log
+btrfs su cr /mnt/@pkg
+btrfs su cr /mnt/@snapshots
+```
+
+```sh
+umount /mnt
+```
+```sh
+mount /dev/mapper/arch-home /mnt
+```
+```sh
+btrfs su cr /mnt/@home
+```
+```sh
+umount /mnt
+```
+
+### Mount Subvolumes
+
+Mount root partition
+```sh
+mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@ /dev/mapper/arch-root /mnt
 ```
 
 Create home and boot directory in root
 ```sh
-mkdir -p /mnt/{home,boot}
+mkdir -p /mnt/{home,btrfs,tmp,.snapshots,boot/efi,var/log,var/cache/pacman/pkg}
 ```
-
-Mount boot
 ```sh
-mount /dev/nvme0n1p2 /mnt/boot
-```
-
-Mount home
-```sh
-mount /dev/mapper/arch-home /mnt/home
-```
-
-Create efi directory
-```sh
-mkdir /mnt/boot/efi
-```
-
-Mount EFI
-```sh
+mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@tmp /dev/mapper/arch-root /mnt/tmp
+mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@log /dev/mapper/arch-root /mnt/var/log
+mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@pkg /dev/mapper/arch-root /mnt/var/cache/pacman/pkg
+mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@snapshots /dev/mapper/arch-root /mnt/.snapshots
+mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@home /dev/mapper/arch-root /mnt/home
+mount -o relatime,space_cache=v2,ssd,compress=zstd,subvol=@home /dev/mapper/arch-home /mnt/home/
+mount -o relatime,space_cache=v2,ssd,compress=zstd,subvolid=5 /dev/mapper/arch-root /mnt/btrfs
 mount /dev/nvme0n1p1 /mnt/boot/efi
 ```
 
 ## Install arch
 
 ```sh
-pacstrap -K /mnt base base-devel Linux Linux-Firmware
+pacstrap -K /mnt base base-devel Linux Linux-Firmware btrfs-progs bash-completion neovim lvm2
 ```
 
 Load the file table
