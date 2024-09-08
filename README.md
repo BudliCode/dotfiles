@@ -232,13 +232,6 @@ arch-chroot /mnt /bin/bash
 
 ## Configuration
 
-### Text editor
-
-Install bash-completion for qualtity of life and a terminal text editor of choice.
-```sh
-pacman -S bash-completion nano neovim
-```
-
 ### Decrypting volumes
 
 Add `encrypt` and `lvm2` HOOKS
@@ -247,11 +240,6 @@ nvim /etc/mkinitcpio.conf
 ```
 ```
 HOOKS=(... block encrypt lvm2 filesystem ...)
-```
-
-Install lvm2
-```sh
-packman -S lvm2
 ```
 
 ### Bootloader
