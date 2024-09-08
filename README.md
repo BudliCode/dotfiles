@@ -536,6 +536,11 @@ git clone https://github.com/budlicode/dotfiles
 cd dotfiles
 ```
 
+packages for dotfiles
+```sh
+yay -S --needed fzf soxide fd eza bat
+```
+
 
 ```sh
 stow . --dotfiles
