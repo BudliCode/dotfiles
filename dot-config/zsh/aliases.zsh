@@ -5,7 +5,6 @@ alias vim="nvim"
 alias nvimk='NVIM_APPNAME="nvimk" nvim'
 
 alias c="clear"
-alias z="zoxide"
 
 #fancy ls
 alias lsc='eza --color=always --git --icons=always'
