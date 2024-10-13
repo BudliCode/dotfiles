@@ -20,7 +20,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+# [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 # plug "zap-zsh/supercharge"
 # plug "zap-zsh/fzf"
@@ -43,17 +43,17 @@ zinit snippet OMZP::sudo
 # zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 
-zinit snippet "$HOME/.config/zsh/aliases.zsh"
-zinit snippet "$HOME/.config/zsh/exports.zsh"
-zinit snippet "$HOME/.config/zsh/functions.zsh"
-
-zinit snippet "$HOME/.config/zsh/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
-zinit snippet "$HOME/.config/zsh/zstyle.zsh"
 
 # Load completions
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
+zinit snippet "$HOME/.config/zsh/exports.zsh"
+zinit snippet "$HOME/.config/zsh/functions.zsh"
+
+zinit snippet "$HOME/.config/zsh/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
+zinit snippet "$HOME/.config/zsh/zstyle.zsh"
+zinit snippet "$HOME/.config/zsh/aliases.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
