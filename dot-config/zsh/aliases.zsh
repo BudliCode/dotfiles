@@ -3,6 +3,7 @@ alias nvimrc="nvim ~/.config/nvim/"
 alias vim="nvim"
 
 alias nvimk='NVIM_APPNAME="nvimk" nvim'
+alias nvim='NVIM_APPNAME="lnvim" nvim'
 
 alias c="clear"
 alias z="cd"
