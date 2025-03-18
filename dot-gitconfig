@@ -1,5 +1,7 @@
 [init]
-	defaultBranch = master
+	defaultbranch = main
 [user]
 	email = birger@luland.de
-	name = Birger
+	name = BudliCode
+[pull]
+	rebase = true
