@@ -1,9 +1,5 @@
 #vims
-alias nvimrc="nvim ~/.config/nvim/"
-alias vim="nvim"
-
-alias nvimk='NVIM_APPNAME="nvimk" nvim'
-alias nvim='NVIM_APPNAME="nviml" nvim'
+#alias nvim='NVIM_APPNAME="nvimt" nvim'
 
 alias c="clear"
 alias z="cd"
