@@ -1,5 +1,6 @@
 #vims
 alias myvim='NVIM_APPNAME="nvimt" nvim'
+alias lnvim='NVIM_APPNAME="lnvim" nvim'
 
 alias c="clear"
 alias z="cd"
