@@ -18,3 +18,5 @@ alias ls="ls --color"
 alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
+
+eval "$(gh copilot alias -- zsh)"
