@@ -10,7 +10,7 @@ source = ~/.config/hypr/monitorSetup.conf
 exec-once = hyprpaper -n
 exec-once = systemctl --user start plasma-polkit-agent
 #exec-once = systemctl start --user ydotool.service
-#exec-once = hyprlidle
+#exec-once = hyprlidle 
 exec-once = dunst
 exec-once = udiskie
 
@@ -19,7 +19,7 @@ exec-once = udiskie
 
 
 # Set programs that you use
-$terminal = alacritty
+$terminal = ghostty
 $fileManager = dolphin
 $menu = wofi --show drun
 $browser = zen-browser
@@ -55,6 +55,7 @@ general {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
     border_size = 2
+    no_border_on_floating = false
     gaps_in = 3
     gaps_out = 9
     col.active_border = rgba(33ccffee) rgba(00ff99ee) 135deg
@@ -79,7 +80,7 @@ decoration {
     inactive_opacity = 0.88
 
     dim_inactive = false
-
+    
     blur {
         enabled = true
         size = 5
@@ -108,7 +109,7 @@ input {
     kb_layout = de
     kb_variant =
     kb_model =
-    kb_options = caps:escape #, shift:breaks_caps
+    kb_options = caps:swapescape #, shift:breaks_caps
     kb_rules =
 
     numlock_by_default = true
@@ -122,7 +123,8 @@ input {
         scroll_factor = 0.2
         disable_while_typing = true
     }
-    sensitivity = 0 # -1.0 to 1.0, 0 means no modification.
+
+    sensitivity = 1.5 # -1.0 to 1.0, 0 means no modification.
     accel_profile = flat
 }
 
@@ -139,6 +141,7 @@ master {
 
 gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
+    workspace_swipe = off
 }
 
 misc {
@@ -154,6 +157,13 @@ device {
     sensitivity = 0.3
 }
 
+# Example windowrule v1
+# windowrule = float, ^(kitty)$
+# Example windowrule v2
+# windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
+# See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.
+
 # bind = , 47, exec, ydotool type p
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -168,10 +178,10 @@ bind = $shiftMod, PRINT, exec, hyprshot -m region
 
 # Example binds,  ee https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, T, exec, $terminal
-bind = $mainMod, C, killactive,
+bind = $mainMod, C, killactive, 
 bind = $mainMod, escape, exec, hyprlock
 bind = $mainMod, E, exec, $fileManager
-bind = $mainMod, V, togglefloating,
+bind = $mainMod, V, togglefloating, 
 bind = $mainMod, space, exec, $menu
 bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, S, togglesplit, # dwindle
@@ -200,18 +210,18 @@ submap=resize
     binde=,H,resizeactive,-10 0
     binde=,K,resizeactive,0 -10
     binde=,J,resizeactive,0 10
-
+    
     binde=SHIFT,L,resizeactive,2 0
     binde=SHIFT,H,resizeactive,-2 0
     binde=SHIFT,K,resizeactive,0 -2
     binde=SHIFT,J,resizeactive,0 2
-
+    
     binde=CTRL,L,resizeactive,40 0
     binde=CTRL,H,resizeactive,-40 0
     binde=CTRL,K,resizeactive,0 -40
     binde=CTRL,J,resizeactive,0 40
-
-    bind=,escape,submap,reset
+    
+    bind=,escape,submap,reset 
 submap=reset
 
 # keybinds further down will be global again...
@@ -271,7 +281,7 @@ bind=$mainMod,A,submap,audio
 # will start a submap called "resize"
 submap=audio
     bind=,catchall,exec,
-
+    
     binde=, K, exec, playerctl volume 0.05+
     binde=, J, exec, playerctl volume 0.05-
     bind=, L, exec, playerctl next
@@ -289,5 +299,5 @@ submap=audio
     binde=SHIFT, K, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
     binde=SHIFT, J, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
-    bind=,escape,submap,reset
+    bind=,escape,submap,reset 
 submap=reset
