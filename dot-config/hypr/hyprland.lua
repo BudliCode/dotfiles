@@ -117,7 +117,6 @@ hl.config({
 -- ── Layouts ──────────────────────────────────────────────────
 hl.config({
     dwindle = {
-        pseudotile = true,
         preserve_split = true
     }
 })
@@ -179,11 +178,9 @@ hl.bind("SUPER + mouse:272",        hl.dsp.window.drag(),   { mouse = true })
 hl.bind("SUPER + mouse:273",        hl.dsp.window.resize(), { mouse = true })
 
 -- ── Resize submap ────────────────────────────────────────────
-hl.bind("SUPER + R", function()
-    hl.submap("resize")
-end)
+hl.bind("SUPER + R", hl.dsp.submap("resize"))
 
-hl.submap("resize", function()
+hl.define_submap("resize", function()
     hl.bind("catchall", hl.dsp.no_op())
 
     hl.bind("L", hl.dsp.window.resize({ x = 10,  y = 0,  relative = true }), { repeating = true })
@@ -201,9 +198,7 @@ hl.submap("resize", function()
     hl.bind("CTRL + K", hl.dsp.window.resize({ x = 0,   y = -40, relative = true }), { repeating = true })
     hl.bind("CTRL + J", hl.dsp.window.resize({ x = 0,   y = 40,  relative = true }), { repeating = true })
 
-    hl.bind("escape", function()
-        hl.submap("reset")
-    end)
+    hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
 -- ── Media keys ───────────────────────────────────────────────
@@ -228,11 +223,9 @@ hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl s 5%+"), { locke
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 5%-"), { locked = true, repeating = true })
 
 -- ── Audio submap ─────────────────────────────────────────────
-hl.bind("SUPER + A", function()
-    hl.submap("audio")
-end)
+hl.bind("SUPER + A", hl.dsp.submap("audio"))
 
-hl.submap("audio", function()
+hl.define_submap("audio", function()
     hl.bind("catchall", hl.dsp.no_op())
 
     hl.bind("K", hl.dsp.exec_cmd("playerctl volume 0.05+"), { repeating = true })
@@ -250,7 +243,5 @@ hl.submap("audio", function()
     hl.bind("SHIFT + K", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
     hl.bind("SHIFT + J", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })
 
-    hl.bind("escape", function()
-        hl.submap("reset")
-    end)
+    hl.bind("escape", hl.dsp.submap("reset"))
 end)
