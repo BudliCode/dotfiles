@@ -10,4 +10,4 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("xrandr --output eDP-1 --primary")
 end)
 
-hl.setenv("GDK_SCALE", "1.5")
+hl.env("GDK_SCALE", "1.5")

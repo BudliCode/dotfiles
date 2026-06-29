@@ -2,19 +2,19 @@
 -- Migrated from hyprlang format
 
 -- ── Environment ──────────────────────────────────────────────
-hl.setenv("SHELL", "tmux")
-hl.setenv("PIPEWIRE_LATENCY", "32/48000")
-hl.setenv("XCURSOR_SIZE", "32")
-hl.setenv("QT_QPA_PLATFORMTHEME", "qt6ct")
-hl.setenv("GDK_BACKEND", "wayland,x11,*")
-hl.setenv("QT_QPA_PLATFORM", "wayland")
-hl.setenv("SDL_VIDEODRIVER", "wayland")
-hl.setenv("CLUTTER_BACKEND", "wayland")
-hl.setenv("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
-hl.setenv("XDG_CURRENT_DESKTOP", "Hyprland")
-hl.setenv("XDG_SESSION_TYPE", "wayland")
-hl.setenv("XDG_SESSION_DESKTOP", "Hyprland")
-hl.setenv("HYPRSHOT_DIR", os.getenv("HOME") .. "/Pictures/Screenshots/")
+hl.env("SHELL", "tmux")
+hl.env("PIPEWIRE_LATENCY", "32/48000")
+hl.env("XCURSOR_SIZE", "32")
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
+hl.env("GDK_BACKEND", "wayland,x11,*")
+hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("SDL_VIDEODRIVER", "wayland")
+hl.env("CLUTTER_BACKEND", "wayland")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+hl.env("HYPRSHOT_DIR", os.getenv("HOME") .. "/Pictures/Screenshots/")
 
 -- ── Variables ────────────────────────────────────────────────
 local terminal = "alacritty"
