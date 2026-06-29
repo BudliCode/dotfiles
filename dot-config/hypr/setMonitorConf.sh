@@ -1,4 +1,4 @@
-#! /bin/bash
-
-ln -sf ~/.config/hypr/monitorSetups/$(uname --nodename).conf ~/.config/hypr/monitorSetup.conf
+#!/bin/bash
+# Monitor config is now auto-loaded by hostname in hyprland.lua via dofile().
+# This script remains as a convenience reload helper.
 hyprctl reload
